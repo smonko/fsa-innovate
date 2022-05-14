@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 # Opis deploymentu, nepovine udaje
 metadata:
-  name: innovate
+  name: innovate-latest
   namespace: develop
   # namespave: myapp
 # annotation su nepovine udaje pouzite na popis deploymentu,k tore ale niesu pouzite ako identifikatory pri query
@@ -24,21 +24,21 @@ spec:
 # Selector sluzi na prepojenie servicov s deploymentami
   selector:
     matchLabels:
-      app: innovate
+      app: innovate-latest
   template:
     metadata:
       labels:
 # Labels  - Identifying metadata that you can use to sort and select sets of API objects. Labels have many applications, including the following:
 # SLuzia na identifikaciu objektov v API calloch
 # kubectl get deployments --selector=app=innovate
-        app: innovate
+        app: innovate-latest
       annotations:
           version: "1.0"
           maintainer: Stefan Monko
     spec:
       containers:
-      - name: innovate
-        image: fsainframonkostefanregistry.azurecr.io/monko-cicd.westeurope.azurecontainer.io/innovate:5e2ccd7
+      - name: innovate-latest
+        image: fsainframonkostefanregistry.azurecr.io/monko-cicd.westeurope.azurecontainer.io/innovate:latest
         ports:
         - containerPort: 80
         imagePullPolicy: Always
